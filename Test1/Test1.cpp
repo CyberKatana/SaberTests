@@ -3,19 +3,24 @@
 
 void RemoveDump(char* pStr)
 {
-	size_t writeIndex = 0;
-	for (size_t readIndex = 1; readIndex < strlen(pStr); readIndex++)
+	char* pRead = pStr + 1;
+
+	while (*pRead)
 	{
-		if (pStr[readIndex] != pStr[writeIndex])
-			pStr[++writeIndex] = pStr[readIndex];
+		if (*pRead != *pStr)
+		{
+			*++pStr = *pRead++;
+		}
+		else
+			++pRead;
 	}
-	pStr[++writeIndex] = '\0';
+	*++pStr = '\0';
 };
 
 int main()
 {
 	char string[] = "AAA BBB CCC";
 	RemoveDump(string);
-	printf("%s", string);
+	printf(string);
 	return 0;
 }
